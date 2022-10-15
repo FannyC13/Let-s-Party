@@ -1,0 +1,31 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.base.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.controls.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.fxml.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.graphics.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.media.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.swing.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx.web.jar",
+        "c:\\Users\\Moi\\Downloads\\javafx-sdk-19\\lib\\javafx-swt.jar",
+        "c:\\Program Files (x86)\\MySQL\\Connector J 8.0\\mysql-connector-java-8.0.30.jar"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Database",
+            "database": "lets_party",
+            "username": "root",
+            "password": "Stéphane05"
+        }
+    ]
+}
