@@ -47,6 +47,8 @@ public class FurnitureController implements Initializable {
     @FXML
     private TableColumn<Furniture, String> DescriptionCol;
 
+    @FXML
+    private ImageView Filter;
 
     @FXML
     private TableColumn<Furniture, Double> PriceCol;
@@ -66,8 +68,33 @@ public class FurnitureController implements Initializable {
     private BorderPane bp;
 
     @FXML
+    private ImageView FilterBox;
+
+    @FXML
+    private ImageView Cart;
+
+    @FXML
+    void Cart(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/RooterPage/Cart.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    void FilterBox(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/FurniturePage/FilterFurniture.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     public void Furniture(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/FurniturePage/Furniture.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FurniturePage/Furniture2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -76,7 +103,7 @@ public class FurnitureController implements Initializable {
 
     @FXML
     public void Location(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -90,7 +117,16 @@ public class FurnitureController implements Initializable {
 
     @FXML
     public void Services(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/ServicesPage/Services.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/ServicesPage/Services2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void FilterC(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/RooterPage/Rooter.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -105,42 +141,47 @@ public class FurnitureController implements Initializable {
         DescriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
         NameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         PriceCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
-      
-        /*ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream("Villa.png")));
-        photo.setFitHeight(60);
-        photo.setFitWidth(60);
-        ImageView photo2 = new ImageView(new Image(this.getClass().getResourceAsStream("DiscoBall.jpg")));
-        photo2.setFitHeight(60);
-        photo2.setFitWidth(60);
-       
-        Furniture Disco= new Furniture("Lacome", "Beautiful Pool Party", 200, photo2);
-        Furniture LA = new Furniture("hihi", "Beautiful Party", 200, photo2);
-        l.add(Disco);
-        FurnitureTable.setItems(l);*/
+
+        /*
+         * ImageView photo = new ImageView(new
+         * Image(this.getClass().getResourceAsStream("Villa.png")));
+         * photo.setFitHeight(60);
+         * photo.setFitWidth(60);
+         * ImageView photo2 = new ImageView(new
+         * Image(this.getClass().getResourceAsStream("DiscoBall.jpg")));
+         * photo2.setFitHeight(60);
+         * photo2.setFitWidth(60);
+         * 
+         * Furniture Disco= new Furniture("Lacome", "Beautiful Pool Party", 200,
+         * photo2);
+         * Furniture LA = new Furniture("hihi", "Beautiful Party", 200, photo2);
+         * l.add(Disco);
+         * FurnitureTable.setItems(l);
+         */
         ObservableList<Furniture> l = FXCollections.observableArrayList();
         FurnitureTab(l);
-        //LocationT(LA,l);
-        /*LocationT(Oval,l);*/
+        // LocationT(LA,l);
+        /* LocationT(Oval,l); */
     }
-        
 
-    public void FurnitureTab( ObservableList<Furniture> l ){
+    public void FurnitureTab(ObservableList<Furniture> l) {
         try {
-           
-            Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services", "services", "WHERE Type = 'Object'");
-            for(Object[] r: A){
+
+            Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services",
+                    "services", "WHERE Type = 'Object'");
+            for (Object[] r : A) {
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[3]))));
                 photo.setFitHeight(60);
                 photo.setFitWidth(60);
                 System.out.println("r" + Arrays.toString(r));
-                Furniture fur = new Furniture(String.valueOf(r[0]), String.valueOf(r[1]), Double.parseDouble(r[2].toString()), photo);
+                Furniture fur = new Furniture(String.valueOf(r[0]), String.valueOf(r[1]),
+                        Double.parseDouble(r[2].toString()), photo);
                 l.add(fur);
                 FurnitureTable.setItems(l);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        
+
     }
 }

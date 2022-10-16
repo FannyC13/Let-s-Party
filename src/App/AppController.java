@@ -57,7 +57,7 @@ public class AppController {
     }
     @FXML
     public void Location(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
