@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -74,6 +76,9 @@ public class FurnitureController implements Initializable {
     private ImageView Cart;
 
     @FXML
+    private TextField Search;
+
+    @FXML
     void Cart(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/RooterPage/Cart.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -81,7 +86,6 @@ public class FurnitureController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
     @FXML
     void FilterBox(MouseEvent event) throws IOException {
@@ -112,7 +116,16 @@ public class FurnitureController implements Initializable {
 
     @FXML
     void Search(ActionEvent event) {
-
+        FurnitureTable.getItems().clear();
+        System.out.println(Search.getText());
+        ObservableList<Furniture> l = FXCollections.observableArrayList();
+        FurnitureTab(l, "where Name_Services like '%" + Search.getText() + "%'");
+        Search.setText("");
+        System.out.println(FurnitureTable.getItems().size());
+        if (FurnitureTable.getItems().size() == 0) {
+            JOptionPane.showMessageDialog(null, "The element does not exists");
+            FurnitureTab(l, "WHERE Type = 'Object'");
+        }
     }
 
     @FXML
@@ -159,16 +172,16 @@ public class FurnitureController implements Initializable {
          * FurnitureTable.setItems(l);
          */
         ObservableList<Furniture> l = FXCollections.observableArrayList();
-        FurnitureTab(l);
+        FurnitureTab(l, "WHERE Type = 'Object'");
         // LocationT(LA,l);
         /* LocationT(Oval,l); */
     }
 
-    public void FurnitureTab(ObservableList<Furniture> l) {
+    public void FurnitureTab(ObservableList<Furniture> l, String query) {
         try {
 
             Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services",
-                    "services", "WHERE Type = 'Object'");
+                    "services", query);
             for (Object[] r : A) {
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[3]))));
                 photo.setFitHeight(60);

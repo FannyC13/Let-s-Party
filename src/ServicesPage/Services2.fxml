@@ -24,7 +24,7 @@
       </TableView>
       <AnchorPane opacity="0.76" prefHeight="60.0" prefWidth="385.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;">
          <children>
-            <TextField alignment="TOP_CENTER" layoutX="51.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Search" prefHeight="30.0" prefWidth="245.0" promptText="Search">
+            <TextField fx:id="Search" alignment="TOP_CENTER" layoutX="51.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Search" prefHeight="30.0" prefWidth="245.0" promptText="Search">
                <font>
                   <Font size="14.0" />
                </font>

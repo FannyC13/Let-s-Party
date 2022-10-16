@@ -12,7 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.loginController">
    <children>
-      <SplitPane fx:id="namepane" layoutX="14.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="199.0" prefWidth="364.0" style="-fx-border-style: none; -fx-background-color: transparent;">
+      <SplitPane layoutX="14.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="199.0" prefWidth="364.0" style="-fx-border-style: none; -fx-background-color: transparent;">
          <items>
           <AnchorPane prefHeight="198.0" prefWidth="350.0" style="-fx-border-style: none;">
                <children>
@@ -43,7 +43,7 @@
       <Button fx:id="Signin" layoutX="38.0" layoutY="516.0" mnemonicParsing="false" onAction="#SignInOnClick" prefHeight="37.0" prefWidth="308.0" style="-fx-background-color: #eee8cd; -fx-cursor: hand;" text="Sign in" />
       <Button fx:id="Login" layoutX="38.0" layoutY="466.0" mnemonicParsing="false" onAction="#onClick" prefHeight="37.0" prefWidth="308.0" style="-fx-background-color: #eee8cd; -fx-cursor: hand;" text="Login" />
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="82.0" />
-    <AnchorPane layoutX="39.0" layoutY="376.0" minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="308.0" visible="false">
+    <AnchorPane fx:id="namepane" layoutX="39.0" layoutY="376.0" minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="308.0" visible="false">
          <children>
             <TextField fx:id="txtName" layoutX="32.0" layoutY="-1.0" prefHeight="30.0" prefWidth="276.0" promptText="Enter Name">
                <font>

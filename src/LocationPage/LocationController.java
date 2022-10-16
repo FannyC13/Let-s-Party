@@ -1,10 +1,14 @@
 package LocationPage;
 
+import java.beans.Customizer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import Functions.Functions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,10 +30,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class LocationController implements Initializable {
+    private static final Button ObservableList = null;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -37,6 +45,9 @@ public class LocationController implements Initializable {
 
     @FXML
     private Button Location;
+
+    @FXML
+    private TextField Search;
 
     @FXML
     private TableColumn<Location, String> AddressLoc;
@@ -115,7 +126,16 @@ public class LocationController implements Initializable {
 
     @FXML
     void Search(ActionEvent event) {
-
+        LocationTable.getItems().clear();
+        System.out.println(Search.getText());
+        ObservableList<Location> l = FXCollections.observableArrayList();
+        LocationTab2(l, "where Name_location like '%" + Search.getText() + "%'");
+        Search.setText("");
+        System.out.println(LocationTable.getItems().size());
+        if (LocationTable.getItems().size() == 0) {
+            JOptionPane.showMessageDialog(null, "The element does not exists");
+            LocationTab2(l, "");
+        }
     }
 
     @FXML
@@ -155,11 +175,22 @@ public class LocationController implements Initializable {
         // tab.add(Oval);
         // LocationTable.setItems(tab);
         ObservableList<Location> l = FXCollections.observableArrayList();
-        LocationTab2(l);
+        LocationTab2(l, "");
         /*
          * LocationT(LA,l);
          * LocationT(Oval,l);
          */
+    }
+
+    private void setWrapCellFactory(TableColumn<Customizer, String> table) {
+        table.setCellFactory(tablecol -> {
+            TableCell<Customizer, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            text.wrappingWidthProperty().bind(cell.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell;
+        });
     }
 
     // LocationTable.setEditable(true);
@@ -194,10 +225,10 @@ public class LocationController implements Initializable {
      * }
      */
 
-    public void LocationTab2(ObservableList<Location> l) {
+    public void LocationTab2(ObservableList<Location> l, String query) {
         try {
 
-            Object[][] A = Functions.createTable("All", "Location", "");
+            Object[][] A = Functions.createTable("All", "Location", query);
             for (Object[] r : A) {
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[4]))));
                 photo.setFitHeight(60);

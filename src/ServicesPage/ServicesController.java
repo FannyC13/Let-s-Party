@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Functions.Functions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,6 +74,9 @@ public class ServicesController implements Initializable {
     private BorderPane bp;
 
     @FXML
+    private TextField Search;
+
+    @FXML
     private ImageView FilterBox;
 
     @FXML
@@ -123,6 +129,15 @@ public class ServicesController implements Initializable {
 
     @FXML
     void Search(ActionEvent event) {
+        ServicesTable.getItems().clear();
+        System.out.println(Search.getText());
+        ObservableList<Services> l = FXCollections.observableArrayList();
+        ServicesTab(l, "where Name_Services like '%" + Search.getText() + "%'");
+        Search.setText("");
+        if (ServicesTable.getItems().size() == 0) {
+            JOptionPane.showMessageDialog(null, "The element does not exists");
+            ServicesTab(l, "WHERE Type = 'Person'");
+        }
 
     }
 
@@ -142,7 +157,7 @@ public class ServicesController implements Initializable {
         DescriptionServ.setCellValueFactory(new PropertyValueFactory<>("Description"));
 
         ImageServ.setCellValueFactory(new PropertyValueFactory<>("Image"));
-        NameServ.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        NameServ.setCellValueFactory(new PropertyValueFactory<>("Name"));
         PriceServ.setCellValueFactory(new PropertyValueFactory<>("Price"));
         /*
          * ImageView photo = new ImageView(new
@@ -161,22 +176,23 @@ public class ServicesController implements Initializable {
          * ServicesTable.setItems(l);
          */
         ObservableList<Services> l = FXCollections.observableArrayList();
-        ServicesTab(l);
+        ServicesTab(l, "WHERE Type = 'Person'");
 
         // LocationT(LA,l);
         /* LocationT(Oval,l); */
     }
 
-    public void ServicesTab(ObservableList<Services> l) {
+    public void ServicesTab(ObservableList<Services> l, String query) {
         try {
 
             Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services",
-                    "services", "WHERE Type = 'Person'");
+                    "services", query);
             for (Object[] r : A) {
                 System.out.println("r" + Arrays.toString(r));
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(r[3].toString())));
                 photo.setFitHeight(60);
                 photo.setFitWidth(60);
+                System.out.println("Name " + String.valueOf(r[0]));
                 Services serv = new Services(String.valueOf(r[0]), String.valueOf(r[1]),
                         Double.parseDouble(r[2].toString()), photo);
                 l.add(serv);

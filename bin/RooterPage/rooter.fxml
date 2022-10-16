@@ -32,7 +32,9 @@
             <Button layoutY="121.0" mnemonicParsing="false" onMouseClicked="#Furniture" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #eee8cd;" text="Furniture" />
             <Line endX="103.99996948242188" layoutX="115.0" layoutY="121.0" startX="-115.0000228881836" />
             <Line endX="112.99996948242188" endY="-1.52587890625E-5" layoutX="106.0" layoutY="181.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
-            <Line endX="112.99996948242188" endY="-1.52587890625E-5" layoutX="106.0" layoutY="241.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
+            <Line endX="112.99996948242188" endY="-1.52587890625E-5" layoutX="106.0" layoutY="240.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
+            <Button fx:id="Event" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#MyEvent" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #eee8cd;" text="My Events" />
+            <Line endX="117.70706176757812" layoutX="102.0" layoutY="300.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
          </children>
       </Pane>
       <Line endX="107.99996948242188" endY="3.814697265625E-6" layoutX="110.0" startX="108.99996948242188" startY="600.0" />

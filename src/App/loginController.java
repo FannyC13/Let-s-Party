@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,13 +39,13 @@ public class loginController {
     private Label lblName;
 
     @FXML
-    private SplitPane namepane;
-
-    @FXML
     private TextField password;
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private AnchorPane namepane;
 
     private Stage stage;
     private Scene scene;
@@ -67,7 +68,7 @@ public class loginController {
                 String user = Email.getText();
                 String pass = password.getText();
 
-                String queryString = "Select email, Password from Users where email='" + user + "' AND Password = '"
+                String queryString = "Select email, Password from app_user where email='" + user + "' AND Password = '"
                         + pass + "'";
 
                 ResultSet res = stat.executeQuery(queryString);

@@ -34,7 +34,7 @@ public class LocationFilterController {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     void FilterBoxB(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/LocationPage/Location2.fxml"));
@@ -55,7 +55,7 @@ public class LocationFilterController {
 
     @FXML
     void Search(ActionEvent event) {
-
+        
     }
 
 }

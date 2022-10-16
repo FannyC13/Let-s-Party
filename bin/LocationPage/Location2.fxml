@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocationPage.LocationController">
    <children>
-      <TableView fx:id="LocationTable" layoutY="92.0" prefHeight="508.0" prefWidth="386.0">
+      <TableView fx:id="LocationTable" layoutY="92.0" prefHeight="508.0" prefWidth="386.0" style="-fx-background-color:: transparent;">
          <columns>
             <TableColumn fx:id="LocationIm" prefWidth="79.99999696016312" style="-fx-background-color: transparent;" text="Image" />
             <TableColumn fx:id="LocationCol" prefWidth="304.8000030517578" text="Location" />
@@ -25,7 +25,7 @@
       </TableView>
       <AnchorPane opacity="0.76" prefHeight="60.0" prefWidth="385.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;">
          <children>
-            <TextField alignment="TOP_CENTER" layoutX="51.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Search" prefHeight="30.0" prefWidth="245.0" promptText="Search">
+            <TextField fx:id="Search" alignment="TOP_CENTER" layoutX="51.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Search" prefHeight="30.0" prefWidth="245.0" promptText="Search">
                <font>
                   <Font size="14.0" />
                </font>
