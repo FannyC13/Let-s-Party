@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
+import Functions.Functions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,17 +60,15 @@ public class loginController {
         txtName.setVisible(true);
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lets_party", "root",
-                    "Stéphane05");
-            java.sql.Statement stat = con.createStatement();
+           
+            java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty() && !txtName.getText().isEmpty()) {
 
                 String user = Email.getText();
                 String pass = password.getText();
 
-                String queryString = "Select email, Password from app_user where email='" + user + "' AND Password = '"
+                String queryString = "Select email, Password from app_users where email='" + user + "' AND Password = '"
                         + pass + "'";
 
                 ResultSet res = stat.executeQuery(queryString);
@@ -101,10 +101,8 @@ public class loginController {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lets_party", "root",
-                    "Stéphane05");
-            java.sql.Statement stat = con.createStatement();
+        
+            java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty()) {
 
