@@ -1,6 +1,7 @@
+package App;
 import java.sql.SQLException;
 import java.util.Arrays;
-
+import Functions.Functions;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,7 @@ public class App extends Application {
     }
     
     public static void main(String[] args) {
-        AppController a = new AppController();
+       /*  AppController a = new AppController();
         a.getConnection();
         try {
             Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services", "services","WHERE Type = 'Person'");
@@ -34,7 +35,7 @@ public class App extends Application {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         launch(args);
         
     }

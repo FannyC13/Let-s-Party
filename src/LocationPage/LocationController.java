@@ -1,9 +1,10 @@
+package LocationPage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
+import Functions.Functions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,7 +69,7 @@ public class LocationController implements Initializable {
 
     @FXML
     void Furniture(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Furniture.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FurniturePage/Furniture.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -77,7 +78,7 @@ public class LocationController implements Initializable {
 
     @FXML
     public void Location(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Location.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -91,7 +92,7 @@ public class LocationController implements Initializable {
 
     @FXML
     public void Services(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Services.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/ServicesPage/Services.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

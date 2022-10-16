@@ -1,3 +1,7 @@
+package App;
+import ServicesPage.Services;
+import FurniturePage.Furniture;
+import LocationPage.Location;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,7 +49,7 @@ public class AppController {
     }
 
     public void Furniture(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Furniture.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FurniturePage/Furniture.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -53,7 +57,7 @@ public class AppController {
     }
     @FXML
     public void Location(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Location.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/LocationPage/Location.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -62,7 +66,7 @@ public class AppController {
 
     @FXML
     public void Services(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Services.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/ServicesPage/Services.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
