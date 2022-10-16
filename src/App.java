@@ -1,6 +1,8 @@
 import java.sql.SQLException;
 import java.util.Arrays;
 
+import com.mysql.cj.xdevapi.Statement;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class App extends Application {
+    public static java.sql.Statement stmt;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -19,17 +22,15 @@ public class App extends Application {
         Image logo = new Image("Icon.png");
         primaryStage.getIcons().add(logo);
         primaryStage.show();
-       
-        
+
     }
-    
+
     public static void main(String[] args) {
-        AppController a = new AppController();
-        LocationController L = new LocationController();
-        a.getConnection();
+
         try {
+            stmt = Connect.getConnect();
             Object[][] A = Functions.createTable("All", "Location");
-            for(Object[] r: A){
+            for (Object[] r : A) {
                 System.out.println(Arrays.toString(r));
                 System.out.println("hihi");
             }
@@ -37,9 +38,7 @@ public class App extends Application {
             e.printStackTrace();
         }
         launch(args);
-        //L.LocationT();
-        
+
     }
 
-    
 }

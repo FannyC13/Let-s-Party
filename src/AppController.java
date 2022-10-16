@@ -1,7 +1,4 @@
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,8 +34,7 @@ public class AppController {
 
     @FXML
     private BorderPane bp;
-    
-    
+
     @FXML
     void Search(ActionEvent event) {
 
@@ -51,6 +47,7 @@ public class AppController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void Location(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Location.fxml"));
@@ -68,29 +65,4 @@ public class AppController {
         stage.setScene(scene);
         stage.show();
     }
-   
-    
-    public void getConnection(){
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lets_party","root","Stéphane05");
-            System.out.println("driver Connected");
-            Statement stat = con.createStatement();
-            System.out.println("DataBase connected");
-
-            //ResultSet rs = stat.executeQuery (< query >);
-            //while ( rs.next ( ) )
-            {
-                System.out.println();
-            }
-            con.close ();
-        }
-        catch(Exception e){
-            System.out.println (e.toString()) ;
-        }
-
-    }
 }
-
-

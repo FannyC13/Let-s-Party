@@ -1,27 +1,21 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+
 /* 
 import javax.swing.table.DefaultTableModel;
 import javafx.scene.control.TableView;*/
 
 public class Functions {
+    public static java.sql.Statement stmt = App.stmt;
 
     public static Object[][] createTable(String columns, String Table) throws SQLException {
         if (!columns.matches("([A-Za-z]+[,]?)+[A-Za-z]$")) {
             JOptionPane.showMessageDialog(null, "Enter Column name separated by comas or write All");
         } else
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                JOptionPane.showMessageDialog(null, "Driver Loaded");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lets_party", "root",
-                        "Stéphane05");
-                JOptionPane.showMessageDialog(null, "Database Connected");
-                Statement stmt = con.createStatement();
                 String queryString;
                 String[] col = columns.split(",");
                 String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + Table + "'";
