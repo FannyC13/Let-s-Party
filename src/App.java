@@ -12,7 +12,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("App.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("App3.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Login");
@@ -25,10 +25,9 @@ public class App extends Application {
     
     public static void main(String[] args) {
         AppController a = new AppController();
-        LocationController L = new LocationController();
         a.getConnection();
         try {
-            Object[][] A = Functions.createTable("All", "Location");
+            Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services", "services","WHERE Type = 'Person'");
             for(Object[] r: A){
                 System.out.println(Arrays.toString(r));
                 System.out.println("hihi");
@@ -37,7 +36,6 @@ public class App extends Application {
             e.printStackTrace();
         }
         launch(args);
-        //L.LocationT();
         
     }
 

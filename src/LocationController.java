@@ -31,16 +31,16 @@ public class LocationController implements Initializable {
     private Parent root;
 
     @FXML
-    private TableColumn<Location, String> AddressLoc;
-
-    @FXML
-    private TableColumn<Location, String> DescriptionLoc;
-
-    @FXML
     private Button Furniture;
 
     @FXML
     private Button Location;
+
+    @FXML
+    private TableColumn<Location, String> AddressLoc;
+
+    @FXML
+    private TableColumn<Location, String> DescriptionLoc;
 
     @FXML
     private TableColumn<Location, Integer> LocationCol;
@@ -102,11 +102,11 @@ public class LocationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        LocationIm.setPrefWidth(10);
+        System.out.println("here Controller");
         LocationIm.setCellValueFactory(new PropertyValueFactory<>("Image"));
         AddressLoc.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        DescriptionLoc.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        NameLoc.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        DescriptionLoc.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        NameLoc.setCellValueFactory(new PropertyValueFactory<>("Name"));
         LocationCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
       
         ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream("Villa.png")));
@@ -129,7 +129,7 @@ public class LocationController implements Initializable {
         //LocationTable.setItems(LocationTab(tab));
         
 
-    public void LocationT(Location loc,  ObservableList<Location> l ){
+    /*public void LocationT(Location loc,  ObservableList<Location> l ){
        
         l.add(loc);
         LocationTable.setItems(l);
@@ -152,12 +152,12 @@ public class LocationController implements Initializable {
         }
         return null;
         
-    }
+    }*/
 
     public void LocationTab2( ObservableList<Location> l ){
         try {
            
-            Object[][] A = Functions.createTable("All", "Location");
+            Object[][] A = Functions.createTable("All", "Location", "");
             for(Object[] r: A){
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[4]))));
                 photo.setFitHeight(60);
