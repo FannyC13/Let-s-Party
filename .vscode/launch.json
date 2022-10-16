@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "Let-s-Party_a8039732"
+        },
+        {
             "name": "Java",
             "type": "java",
             "request": "launch",
@@ -43,8 +50,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "Let-s-Party_2f8dd907",
-            "vmArgs":"--module-path \"C:/Users/arthu/OneDrive/Bureau/JavaFX/FlipCoin/lib/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml",
-            
+            "vmArgs": "--module-path \"../lib/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
