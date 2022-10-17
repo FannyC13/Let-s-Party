@@ -60,7 +60,7 @@ public class loginController {
         txtName.setVisible(true);
 
         try {
-           
+
             java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty() && !txtName.getText().isEmpty()) {
@@ -77,7 +77,7 @@ public class loginController {
                     JOptionPane.showMessageDialog(null, "This Account already exists");
                 } else {
                     String Name = Email.getText();
-                    queryString = "Insert into users values('" + user + "', '" + pass + "', '" + Name + "')";
+                    queryString = "Insert into app_users values('" + user + "', '" + pass + "', '" + Name + "')";
                     stat.execute(queryString);
 
                     JOptionPane.showMessageDialog(null, "User " + Name + " added");
@@ -101,7 +101,6 @@ public class loginController {
 
         try {
 
-        
             java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty()) {
@@ -109,7 +108,7 @@ public class loginController {
                 String user = Email.getText();
                 String pass = password.getText();
 
-                String queryString = "Select email, Password, name from app_user where email='" + user
+                String queryString = "Select email, Password, name from app_users where email='" + user
                         + "' AND Password = '" + pass + "'";
 
                 ResultSet res = stat.executeQuery(queryString);

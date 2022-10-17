@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import Functions.Functions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -172,15 +174,44 @@ public class LocationController implements Initializable {
         ImageView photo2 = new ImageView(new Image(this.getClass().getResourceAsStream("wedding.jpg")));
         photo2.setFitHeight(60);
         photo2.setFitWidth(60);
-        // tab.add(Oval);
-        // LocationTable.setItems(tab);
+
         ObservableList<Location> l = FXCollections.observableArrayList();
-        LocationTab2(l, "");
-        /*
-         * LocationT(LA,l);
-         * LocationT(Oval,l);
-         */
+        if (LocationFilterController.queryString != null) {
+            LocationTab2(l, LocationFilterController.queryString);
+        } else {
+            LocationTab2(l, "");
+        }
+
+        // debut de la fonction pour la barre de recherche
+
+        FilteredList<Location> FiltredData = new FilteredList<>(l, b -> true);
+        Search.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            FiltredData.setPredicate(Location -> {
+                if (newvalue.isEmpty() || newvalue.isBlank() || newvalue == null) {
+                    return true;
+                }
+                String searchKeyword = newvalue.toLowerCase();
+
+                if (Location.getAddress().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                }
+                if (Location.getDescription().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                }
+                if (Location.getName().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+        SortedList<Location> sortedData = new SortedList<>(FiltredData);
+        sortedData.comparatorProperty().bind(LocationTable.comparatorProperty());
+        LocationTable.setItems(sortedData);
     }
+
+    // fin fonction pour la barre de recherche
 
     private void setWrapCellFactory(TableColumn<Customizer, String> table) {
         table.setCellFactory(tablecol -> {
@@ -193,48 +224,17 @@ public class LocationController implements Initializable {
         });
     }
 
-    // LocationTable.setEditable(true);
-    // LocationTable.setItems(LocationTab(tab));
-
-    /*
-     * public void LocationT(Location loc, ObservableList<Location> l ){
-     * 
-     * l.add(loc);
-     * LocationTable.setItems(l);
-     * }
-     * public ObservableList<Location> LocationTab(ObservableList<Location> tab){
-     * try {
-     * 
-     * Object[][] A = Functions.createTable("All", "Location");
-     * for(Object[] r: A){
-     * ImageView photo = new ImageView(new
-     * Image(this.getClass().getResourceAsStream(String.valueOf(r[4]))));
-     * photo.setFitHeight(60);
-     * photo.setFitWidth(60);
-     * Location loc = new Location(String.valueOf(r[0]), String.valueOf(r[1]),
-     * String.valueOf(r[2]), Integer.parseInt(r[3].toString()), photo);
-     * tab.add(loc);
-     * //LocationTable.setItems(tab);
-     * }
-     * return tab;
-     * } catch (SQLException e) {
-     * e.printStackTrace();
-     * }
-     * return null;
-     * 
-     * }
-     */
-
     public void LocationTab2(ObservableList<Location> l, String query) {
         try {
 
             Object[][] A = Functions.createTable("All", "Location", query);
             for (Object[] r : A) {
-                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[4]))));
+                System.out.println(r);
+                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[2]))));
                 photo.setFitHeight(60);
                 photo.setFitWidth(60);
-                Location loc = new Location(String.valueOf(r[0]), String.valueOf(r[1]), String.valueOf(r[2]),
-                        Integer.parseInt(r[3].toString()), photo);
+                Location loc = new Location(String.valueOf(r[0]), String.valueOf(r[3]), String.valueOf(r[1]),
+                        Integer.parseInt(r[4].toString()), photo);
                 l.add(loc);
                 LocationTable.setItems(l);
             }
