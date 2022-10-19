@@ -1,16 +1,16 @@
 package ServicesPage;
 
+import java.beans.Customizer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
-import javax.swing.JOptionPane;
-
 import Functions.Functions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,13 +53,13 @@ public class ServicesController implements Initializable {
     private ImageView Filter;
 
     @FXML
-    private TableColumn<Services, String> DescriptionServ;
+    private TableColumn<Customizer, String> DescriptionServ;
 
     @FXML
     private TableColumn<Services, ImageView> ImageServ;
 
     @FXML
-    private TableColumn<Services, String> NameServ;
+    private TableColumn<Customizer, String> NameServ;
 
     @FXML
     private TableColumn<Services, Double> PriceServ;
@@ -129,7 +129,7 @@ public class ServicesController implements Initializable {
 
     @FXML
     void Search(ActionEvent event) {
-        ServicesTable.getItems().clear();
+       /* ServicesTable.getItems().clear();
         System.out.println(Search.getText());
         ObservableList<Services> l = FXCollections.observableArrayList();
         ServicesTab(l, "where Name_Services like '%" + Search.getText() + "%'");
@@ -137,7 +137,7 @@ public class ServicesController implements Initializable {
         if (ServicesTable.getItems().size() == 0) {
             JOptionPane.showMessageDialog(null, "The element does not exists");
             ServicesTab(l, "WHERE Type = 'Person'");
-        }
+        }*/ 
 
     }
 
@@ -152,34 +152,45 @@ public class ServicesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("here Services");
 
         DescriptionServ.setCellValueFactory(new PropertyValueFactory<>("Description"));
 
         ImageServ.setCellValueFactory(new PropertyValueFactory<>("Image"));
         NameServ.setCellValueFactory(new PropertyValueFactory<>("Name"));
         PriceServ.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        /*
-         * ImageView photo = new ImageView(new
-         * Image(this.getClass().getResourceAsStream("Villa.png")));
-         * photo.setFitHeight(60);
-         * photo.setFitWidth(60);
-         * ImageView photo2 = new ImageView(new
-         * Image(this.getClass().getResourceAsStream("DiscoBall.jpg")));
-         * photo2.setFitHeight(60);
-         * photo2.setFitWidth(60);
-         * ObservableList<Services> l = FXCollections.observableArrayList();
-         * Services Disco= new Services("Lacome", "Beautiful Pool Party", 200.0,
-         * photo2);
-         * Services LA = new Services("hihi", "Beautiful Party", 200.0, photo2);
-         * l.add(Disco);
-         * ServicesTable.setItems(l);
-         */
-        ObservableList<Services> l = FXCollections.observableArrayList();
-        ServicesTab(l, "WHERE Type = 'Person'");
+        Functions.setWrapCellFactory(DescriptionServ);
+        Functions.setWrapCellFactory(NameServ);
 
-        // LocationT(LA,l);
-        /* LocationT(Oval,l); */
+        ObservableList<Services> l = FXCollections.observableArrayList();
+        if (ServicesFilterController.queryString != null) {
+            ServicesTab(l, ServicesFilterController.queryString);
+
+        } else {
+            ServicesTab(l, "WHERE Type like 'Person%'");
+        }
+
+        FilteredList<Services> FiltredData = new FilteredList<>(l, b -> true);
+        Search.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            FiltredData.setPredicate(Services -> {
+                if (newvalue.isEmpty() || newvalue.isBlank() || newvalue == null) {
+                    return true;
+                }
+                String searchKeyword = newvalue.toLowerCase();
+
+                if (Services.getDescription().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                }
+                if (Services.getName().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+        SortedList<Services> sortedData = new SortedList<>(FiltredData);
+        sortedData.comparatorProperty().bind(ServicesTable.comparatorProperty());
+        ServicesTable.setItems(sortedData);
     }
 
     public void ServicesTab(ObservableList<Services> l, String query) {
@@ -187,7 +198,9 @@ public class ServicesController implements Initializable {
 
             Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services",
                     "services", query);
+
             for (Object[] r : A) {
+
                 System.out.println("r" + Arrays.toString(r));
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(r[3].toString())));
                 photo.setFitHeight(60);

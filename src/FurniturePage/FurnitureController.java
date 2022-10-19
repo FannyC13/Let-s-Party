@@ -1,6 +1,8 @@
 package FurniturePage;
 
 import Functions.Functions;
+
+import java.beans.Customizer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -9,6 +11,8 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,10 +48,10 @@ public class FurnitureController implements Initializable {
     private TableView<Furniture> FurnitureTable;
 
     @FXML
-    private TableColumn<Furniture, String> NameCol;
+    private TableColumn<Customizer, String> NameCol;
 
     @FXML
-    private TableColumn<Furniture, String> DescriptionCol;
+    private TableColumn<Customizer, String> DescriptionCol;
 
     @FXML
     private ImageView Filter;
@@ -89,6 +93,7 @@ public class FurnitureController implements Initializable {
 
     @FXML
     void FilterBox(MouseEvent event) throws IOException {
+       
         root = FXMLLoader.load(getClass().getResource("/FurniturePage/FilterFurniture.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -124,7 +129,7 @@ public class FurnitureController implements Initializable {
         System.out.println(FurnitureTable.getItems().size());
         if (FurnitureTable.getItems().size() == 0) {
             JOptionPane.showMessageDialog(null, "The element does not exists");
-            FurnitureTab(l, "WHERE Type = 'Object'");
+            FurnitureTab(l, "WHERE Type like 'Object%'");
         }
     }
 
@@ -149,32 +154,43 @@ public class FurnitureController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("here");
-        FurnitureIm.setPrefWidth(10);
         FurnitureIm.setCellValueFactory(new PropertyValueFactory<>("Image"));
         DescriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
         NameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         PriceCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        Functions.setWrapCellFactory(DescriptionCol);
+        Functions.setWrapCellFactory(NameCol);
 
-        /*
-         * ImageView photo = new ImageView(new
-         * Image(this.getClass().getResourceAsStream("Villa.png")));
-         * photo.setFitHeight(60);
-         * photo.setFitWidth(60);
-         * ImageView photo2 = new ImageView(new
-         * Image(this.getClass().getResourceAsStream("DiscoBall.jpg")));
-         * photo2.setFitHeight(60);
-         * photo2.setFitWidth(60);
-         * 
-         * Furniture Disco= new Furniture("Lacome", "Beautiful Pool Party", 200,
-         * photo2);
-         * Furniture LA = new Furniture("hihi", "Beautiful Party", 200, photo2);
-         * l.add(Disco);
-         * FurnitureTable.setItems(l);
-         */
         ObservableList<Furniture> l = FXCollections.observableArrayList();
-        FurnitureTab(l, "WHERE Type = 'Object'");
-        // LocationT(LA,l);
-        /* LocationT(Oval,l); */
+
+        if (FilterFurnitureController.queryString != null) {
+            FurnitureTab(l, FilterFurnitureController.queryString);
+
+        } else {
+            FurnitureTab(l, "WHERE Type like 'Object%'");
+        }
+        FilteredList<Furniture> FiltredData = new FilteredList<>(l, b -> true);
+        Search.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            FiltredData.setPredicate(Furniture -> {
+                if (newvalue.isEmpty() || newvalue.isBlank() || newvalue == null) {
+                    return true;
+                }
+                String searchKeyword = newvalue.toLowerCase();
+
+                if (Furniture.getDescription().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                }
+                if (Furniture.getName().toLowerCase().indexOf(searchKeyword) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+        SortedList<Furniture> sortedData = new SortedList<>(FiltredData);
+        sortedData.comparatorProperty().bind(FurnitureTable.comparatorProperty());
+        FurnitureTable.setItems(sortedData);
     }
 
     public void FurnitureTab(ObservableList<Furniture> l, String query) {

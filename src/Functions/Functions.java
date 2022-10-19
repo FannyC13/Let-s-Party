@@ -1,6 +1,6 @@
 package Functions;
 
-import java.sql.Connection;
+import java.beans.Customizer;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +10,10 @@ import javax.swing.JOptionPane;
 /* 
 import javax.swing.table.DefaultTableModel;
 import javafx.scene.control.TableView;*/
+
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.text.Text;
 
 public class Functions {
 
@@ -23,7 +27,7 @@ public class Functions {
                 String queryString;
                 String[] col = columns.split(",");
                 String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + Table + "'";
-                System.out.println("query" + query);
+                System.out.println("query " + query);
                 ResultSet re = stmt.executeQuery(query);
                 int a = 0;
                 while (re.next()) {
@@ -36,7 +40,6 @@ public class Functions {
                     name[a] = re.getString(1);
                     a++;
                 }
-                System.out.println("name[a] " + Arrays.toString(name));
                 if (columns.equals("All")) {
                     queryString = "select * from " + Table + " " + Query;
                     col = name;
@@ -48,7 +51,9 @@ public class Functions {
                         ;
                     }
                     queryString = "select " + columns + " from " + Table + " " + Query;
+
                 }
+               
                 ResultSet res = stmt.executeQuery(queryString);
                 int i = 0;
                 while (res.next()) {
@@ -64,6 +69,7 @@ public class Functions {
                     }
                     i++;
                 }
+               
                 return data;
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -89,6 +95,17 @@ public class Functions {
         }
         return null;
 
+    }
+
+    public static void setWrapCellFactory(TableColumn<Customizer, String> table) {
+        table.setCellFactory(tablecol -> {
+            TableCell<Customizer, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            text.wrappingWidthProperty().bind(cell.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell;
+        });
     }
 }
 

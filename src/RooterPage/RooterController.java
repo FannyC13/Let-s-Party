@@ -22,16 +22,13 @@ public class RooterController {
     private ImageView Filter;
 
     @FXML
-    private Button Event;
+    private Button Furniture;
 
     @FXML
-    void MyEvent(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/RooterPage/MyEvents.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    private Button Location;
+
+    @FXML
+    private Button Services;
 
     @FXML
     void FilterB(MouseEvent event) throws IOException {
@@ -53,6 +50,7 @@ public class RooterController {
 
     @FXML
     public void Location(MouseEvent event) throws IOException {
+
         root = FXMLLoader.load(getClass().getResource("/LocationPage/Location2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -72,6 +70,38 @@ public class RooterController {
     @FXML
     void Search(ActionEvent event) {
 
+    }
+
+    @FXML
+    void FurnitureH(MouseEvent event) {
+        Furniture.setOnMouseMoved(m -> {
+            Furniture.setStyle("-fx-background-color: #c5c7c9;");
+        });
+        Furniture.setOnMouseExited(m -> {
+            Furniture.setStyle("-fx-background-color:  #eee8cd;");
+        });
+
+    }
+
+    @FXML
+    void LocationH(MouseEvent event) {
+        Location.setOnMouseMoved(m -> {
+            Location.setStyle("-fx-background-color: #c5c7c9;");
+        });
+        Location.setOnMouseExited(m -> {
+            Location.setStyle("-fx-background-color:  #eee8cd;");
+        });
+
+    }
+
+    @FXML
+    void ServicesH(MouseEvent event) {
+        Services.setOnMouseMoved(m -> {
+            Services.setStyle("-fx-background-color: #c5c7c9;");
+        });
+        Services.setOnMouseExited(m -> {
+            Services.setStyle("-fx-background-color:  #eee8cd;");
+        });
     }
 
 }
