@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FurniturePage.FurnitureController">
+   <center>
+      <TableView fx:id="FurnitureTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="820.0" stylesheets="@../tableview.css">
+         <columns>
+            <TableColumn fx:id="FurnitureIm" prefWidth="78.4000244140625" />
+            <TableColumn fx:id="NameCol" prefWidth="84.79998779296875" />
+            <TableColumn fx:id="DescriptionCol" prefWidth="315.99993896484375" />
+            <TableColumn fx:id="PriceCol" prefWidth="68.800048828125" />
+            <TableColumn fx:id="addButton" prefWidth="75.0" />
+         </columns>
+      </TableView>
+   </center>
+   <top>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane layoutX="14.0" layoutY="15.0" prefHeight="30.0" prefWidth="793.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.799999999999955" AnchorPane.topAnchor="15.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="NEVER" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="Search" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="685.0" promptText="Search" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="Filter" fitHeight="32.0" fitWidth="29.0" onMouseClicked="#FilterC" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="NEVER">
+                     <image>
+                        <Image url="@../List.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets right="3.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="FilterBox" fitHeight="24.0" fitWidth="40.0" onMouseClicked="#FilterBox" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../Filter.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <ImageView fx:id="Cart" fitHeight="24.0" fitWidth="41.0" onMouseClicked="#Cart" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../cart.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #eee8cd;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Pane prefHeight="402.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

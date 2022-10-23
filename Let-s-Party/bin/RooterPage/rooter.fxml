@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RooterPage.RooterController">
+   <top>
+      <AnchorPane opacity="0.23" prefHeight="0.0" prefWidth="600.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="225.0" style="-fx-background-color: white; -fx-border-color: black;">
+         <children>
+            <AnchorPane layoutX="-6.0" prefHeight="60.0" prefWidth="230.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;">
+               <children>
+                  <ImageView fx:id="Filter" fitHeight="32.0" fitWidth="29.0" layoutX="20.0" layoutY="15.0" onMouseClicked="#FilterB" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../List.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="32.0" fitWidth="96.0" layoutX="73.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Line endX="117.0" layoutX="107.0" layoutY="60.0" startX="-107.0000228881836" startY="3.814697265625E-6" />
+            <Button fx:id="Location" layoutX="-7.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#Location" onMouseMoved="#LocationH" prefHeight="60.0" prefWidth="231.0" style="-fx-background-color: #eee8cd;" text="Location" />
+            <Button fx:id="Services" layoutX="-8.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#Services" onMouseMoved="#ServicesH" prefHeight="60.0" prefWidth="232.0" style="-fx-background-color: #eee8cd;" text="Services" />
+            <Button fx:id="Furniture" layoutX="-8.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#Furniture" onMouseMoved="#FurnitureH" prefHeight="60.0" prefWidth="232.0" style="-fx-background-color: #eee8cd;" text="Furniture" />
+            <Line endX="110.70709228515625" endY="7.62939453125E-6" layoutX="115.0" layoutY="121.0" startX="-115.0000228881836" />
+            <Line endX="119.70709228515625" endY="-3.0517578125E-5" layoutX="106.0" layoutY="181.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
+            <Line endX="120.0" endY="1.0" layoutX="106.0" layoutY="240.0" startX="-106.0000228881836" startY="-1.52587890625E-5" />
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <Pane prefHeight="530.0" prefWidth="570.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
