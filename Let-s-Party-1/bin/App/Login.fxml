@@ -40,8 +40,8 @@
                   </AnchorPane>
                </items>
             </SplitPane>
-            <Button fx:id="Signin" layoutX="203.0" layoutY="280.0" mnemonicParsing="false" onAction="#SignInOnClick" prefHeight="32.0" prefWidth="233.0" style="-fx-background-color: #E5D0B1; -fx-cursor: hand;" text="Sign in" />
-            <Button fx:id="Login" layoutX="203.0" layoutY="233.0" mnemonicParsing="false" onAction="#onClick" prefHeight="30.0" prefWidth="232.0" style="-fx-background-color: #E5D0B1; -fx-cursor: hand;" text="Login" />
+            <Button fx:id="Signin" layoutX="203.0" layoutY="280.0" mnemonicParsing="false" onAction="#SignInOnClick" prefHeight="32.0" prefWidth="233.0" style="-fx-background-color: #f58992; -fx-cursor: hand;" text="Sign in" />
+            <Button fx:id="Login" layoutX="203.0" layoutY="233.0" mnemonicParsing="false" onAction="#onClick" prefHeight="30.0" prefWidth="232.0" style="-fx-background-color: #f58992; -fx-cursor: hand;" text="Login" />
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="82.0" />
           <AnchorPane fx:id="namepane" layoutX="93.0" layoutY="139.0" minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="442.0" visible="false">
                <children>
@@ -64,7 +64,7 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <top>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="106.0" prefWidth="781.0" style="-fx-background-color: #E5D0B1;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="106.0" prefWidth="781.0" style="-fx-background-color: #f58992;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="45.0" fitWidth="253.0" layoutX="219.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -123,7 +123,7 @@
       <Pane prefHeight="411.0" prefWidth="1.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #E5D0B1;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #f58992;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <Pane prefHeight="411.0" prefWidth="0.0" BorderPane.alignment="CENTER" />

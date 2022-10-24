@@ -15,7 +15,7 @@
    <center>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="618.0">
          <children>
-            <Button fx:id="Pay" layoutX="196.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#Pay" prefHeight="37.0" prefWidth="228.0" style="-fx-background-color: #E5D0B1; -fx-cursor: hand;" text="Pay" />
+            <Button fx:id="Pay" layoutX="196.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#Pay" prefHeight="37.0" prefWidth="228.0" style="-fx-background-color: #f58992; -fx-cursor: hand;" text="Pay" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="82.0" />
             <TableView fx:id="kart" layoutX="26.0" layoutY="14.0" prefHeight="295.0" prefWidth="567.0" stylesheets="@../tableview.css">
               <columns>
@@ -37,12 +37,12 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="Reset" layoutX="523.0" layoutY="335.0" mnemonicParsing="false" onAction="#Reset" style="-fx-background-color: #E5D0B1; -fx-cursor: hand;" text="Reset" />
+            <Button fx:id="Reset" layoutX="523.0" layoutY="335.0" mnemonicParsing="false" onAction="#Reset" style="-fx-background-color: #f58992; -fx-cursor: hand;" text="Reset" />
          </children>
       </Pane>
    </center>
    <top>
-      <AnchorPane prefHeight="94.0" prefWidth="820.0" style="-fx-background-color: #E5D0B1; -fx-border-radius: 50px;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="94.0" prefWidth="820.0" style="-fx-background-color: #f58992; -fx-border-radius: 50px;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="79.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
                <image>

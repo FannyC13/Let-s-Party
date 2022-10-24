@@ -30,7 +30,7 @@
       </TableView>
    </center>
    <top>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #E5D0B1; -fx-border-radius: 50px;">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #f58992; -fx-border-radius: 50px;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -87,7 +87,7 @@
       </AnchorPane>
    </top>
    <bottom>
-      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #E5D0B1;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #f58992;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <Pane prefHeight="402.0" prefWidth="0.0" BorderPane.alignment="CENTER" />

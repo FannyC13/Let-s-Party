@@ -21,7 +21,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServicesPage.ServicesFilterController">
    <right>
-      <Pane prefHeight="475.0" prefWidth="495.0" style="-fx-background-color: #f2eede;">
+      <Pane prefHeight="475.0" prefWidth="495.0" style="-fx-background-color: #f58992;">
          <children>
             <Pane prefHeight="60.0" prefWidth="493.0">
                <children>
@@ -65,7 +65,7 @@
       </Pane>
    </right>
    <top>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #E5D0B1; -fx-border-radius: 50px;">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #f58992; -fx-border-radius: 50px;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
