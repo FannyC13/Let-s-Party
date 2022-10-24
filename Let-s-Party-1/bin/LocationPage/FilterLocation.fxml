@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LocationPage.LocationFilterController">
+   <right>
+      <Pane prefHeight="475.0" prefWidth="495.0" style="-fx-background-color: #f2eede;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Pane prefHeight="60.0" prefWidth="493.0">
+               <children>
+                  <ComboBox fx:id="SortBy" layoutX="68.0" layoutY="18.0" opacity="0.66" prefHeight="25.0" prefWidth="301.0" />
+                  <Label layoutX="14.0" layoutY="22.0" text="Sort By" wrapText="true">
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+               </children>
+               <effect>
+                  <Blend />
+               </effect>
+            </Pane>
+            <Pane layoutY="60.0" prefHeight="60.0" prefWidth="494.0" style="-fx-border-color: #d9c9c9;">
+               <children>
+                  <TextField fx:id="MinPrice" layoutX="70.0" layoutY="18.0" prefHeight="25.0" prefWidth="131.0" promptText="Price Min" />
+                  <TextField fx:id="MaxPrice" layoutX="231.0" layoutY="18.0" prefHeight="25.0" prefWidth="140.0" promptText="Price Max" />
+                  <Label layoutX="13.0" layoutY="25.0" text="Price" wrapText="true">
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="120.0" prefHeight="60.0" prefWidth="494.0" style="-fx-border-color: #d9c9c9;">
+               <children>
+                  <ComboBox fx:id="SortType" layoutX="70.0" layoutY="18.0" prefHeight="25.0" prefWidth="301.0" />
+                  <Label layoutX="14.0" layoutY="22.0" text="Type" wrapText="true">
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="FilterButton" layoutX="154.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#FilterButton" prefHeight="42.0" prefWidth="162.0" text="Apply Filter" />
+         </children>
+      </Pane>
+   </right>
+   <top>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #E5D0B1; -fx-border-radius: 50px;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <children>
+            <GridPane layoutX="14.0" layoutY="15.0" prefHeight="30.0" prefWidth="793.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.799999999999955" AnchorPane.topAnchor="15.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="NEVER" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="Search" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="490.0" promptText="Search" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="Filter" fitHeight="32.0" fitWidth="29.0" onMouseClicked="#FilterC" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="NEVER">
+                     <image>
+                        <Image url="@../List.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets right="3.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="FilterBoxB" fitHeight="24.0" fitWidth="40.0" onMouseClicked="#FilterBoxB" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../Filter.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="Cart" fitHeight="24.0" fitWidth="41.0" onMouseClicked="#Cart" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../cart.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
