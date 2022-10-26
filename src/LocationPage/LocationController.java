@@ -1,10 +1,15 @@
 package LocationPage;
 
+import App.App;
+import RooterPage.*;
+
 import java.beans.Customizer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 import Functions.Functions;
 import javafx.collections.FXCollections;
@@ -32,7 +37,8 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class LocationController implements Initializable {
-    private static final Button ObservableList = null;
+    ObservableList<Location> l = FXCollections.observableArrayList();
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -57,6 +63,10 @@ public class LocationController implements Initializable {
 
     @FXML
     private TableColumn<Location, ImageView> LocationIm;
+
+    
+    @FXML
+    private TableColumn<Location, Button> addButton;
 
     @FXML
     private TableView<Location> LocationTable;
@@ -162,10 +172,11 @@ public class LocationController implements Initializable {
         DescriptionLoc.setCellValueFactory(new PropertyValueFactory<>("Description"));
         NameLoc.setCellValueFactory(new PropertyValueFactory<>("Name"));
         LocationCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        addButton.setCellValueFactory(new PropertyValueFactory<>("button"));
+
         Functions.setWrapCellFactory(DescriptionLoc);
         Functions.setWrapCellFactory(AddressLoc);
         Functions.setWrapCellFactory(NameLoc);
-        ObservableList<Location> l = FXCollections.observableArrayList();
         if (LocationFilterController.queryString != null) {
             LocationTab2(l, LocationFilterController.queryString);
         } else {
@@ -200,25 +211,104 @@ public class LocationController implements Initializable {
         LocationTable.setItems(sortedData);
     }
 
+    Button[] buttons = new Button[20];
+     int i = 0;
+     public boolean check = false;
+     public boolean initialized = false;
+     public static ObservableList<Location> dataRows = FXCollections.observableArrayList();   
+
     public void LocationTab2(ObservableList<Location> l, String query) {
+
         try {
 
             Object[][] A = Functions.createTable("All", "Location", query);
-            for (Object[] r : A) {
 
-                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[4]))));
+            for (Object[] r : A) {   
+                System.out.println("r" + Arrays.toString(r));         
+                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[2]))));
                 photo.setFitHeight(60);
                 photo.setFitWidth(60);
-                Location loc = new Location(String.valueOf(r[0]), String.valueOf(r[1]), String.valueOf(r[2]),
-                        Integer.parseInt(r[3].toString()), photo);
-                l.add(loc);
+                
 
+                Button button = new Button("Add");
+
+                buttons[i] = button;
+                buttons[i].setId( String.valueOf(i));
+                buttons[i].setOnAction(this::addToKart);
+
+                Location loc = new Location(String.valueOf(r[3]), String.valueOf(r[0]), String.valueOf(r[1]),
+                        Double.parseDouble(r[4].toString()), photo, buttons[i]);
+                l.add(loc);
                 LocationTable.setItems(l);
+                i++;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void addToKart(ActionEvent event){
+        int source = Integer.parseInt(((Button)event.getSource()).getId());
+
+        
+        if(initialized == false){
+            for(Location bean : l){               
+                dataRows.add(bean);   
+            }
+
+            System.out.println(dataRows.toString());
+
+            Item first = new Item(dataRows.get(source).getImage(), dataRows.get(source).getName(),
+                     dataRows.get(source).getPrice());
+
+                App.KartRows.add(first);   
+                CartController.addPrice(dataRows.get(source).getPrice());
+
+            initialized = true;
+            check = true;
+        }
+        else {
+            if(check == true){
+                JOptionPane.showMessageDialog(null, "A location has already been decided");
+            }
+            else{
+                for(Location bean : l){               
+                    dataRows.add(bean);   
+                }
+
+                Item first = new Item(dataRows.get(source).getImage(), dataRows.get(source).getName(),
+                dataRows.get(source).getPrice());
+
+                 App.KartRows.add(first);   
+                 CartController.addPrice(dataRows.get(source).getPrice());
+
+                 check = true;
+            }
+           /*  for(int i = 0; i < App.KartRows.size(); i++){
+                if(App.KartRows.get(i).getName().equals(dataRows.get(source).getName())){
+                    JOptionPane.showMessageDialog(null, "Item already added to kart");
+                    check = true;
+                } 
+            }
+
+            if(check == false){
+                for(Location bean : l){               
+                    dataRows.add(bean);
+                }
+                Item first = new Item(dataRows.get(source).getImage(), dataRows.get(source).getName(),
+                 dataRows.get(source).getPrice());
+                 CartController.retrievePrice(dataRows.get(source).getPrice());
+
+                App.KartRows.add(first);
+            } */
+        }
+        
+
+            
+    
+
+        
     }
 }

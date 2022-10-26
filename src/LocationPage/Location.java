@@ -1,23 +1,30 @@
 package LocationPage;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 public class Location {
     private  SimpleStringProperty Address, Name,Description;
     private  ImageView image;
-    private  SimpleIntegerProperty Price;
-    
+    private  SimpleDoubleProperty Price;
+    private Button button;    
+
+    public Location getLocation(Button button){
+        return this;
+    }
+
     Location() {
     
     }
 
-    Location(String address, String Name, String Description,int Price, ImageView image){
+    Location(String address, String Name, String Description,Double Price, ImageView image, Button button){
         this.Address = new SimpleStringProperty(address);
         this.Name = new SimpleStringProperty(Name);
         this.Description = new SimpleStringProperty(Description);
         this.image = image;
-        this.Price = new SimpleIntegerProperty(Price);
+        this.Price = new SimpleDoubleProperty(Price);
+        this.button = button;
     }
   
     public String getAddress() {
@@ -40,8 +47,12 @@ public class Location {
         this.image = image;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return this.Price.get();
+    }
+
+    public Button getButton() {
+        return button;
     }
 
     public void setDescription(String Description){
@@ -56,8 +67,12 @@ public class Location {
         this.Name.set(name);
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.Price.set(price);
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
     }
 
 }

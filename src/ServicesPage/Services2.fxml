@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServicesPage.ServicesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServicesPage.ServicesController">
    <center>
       <TableView fx:id="ServicesTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="450.0" prefWidth="820.0" stylesheets="@../tableview.css">
          <columns>
@@ -24,11 +24,12 @@
             <TableColumn fx:id="NameServ" prefWidth="84.79998779296875" />
             <TableColumn fx:id="DescriptionServ" prefWidth="332.800048828125" />
             <TableColumn fx:id="PriceServ" prefWidth="114.40005493164062" />
+            <TableColumn fx:id="addButton" prefWidth="75.0" />
          </columns>
       </TableView>
    </center>
    <top>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #eee8cd; -fx-border-radius: 50px;">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.76" prefHeight="60.0" prefWidth="821.0" style="-fx-background-color: #f58992; -fx-border-radius: 50px;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -44,7 +45,7 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="Search" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="685.0" promptText="Search" GridPane.columnIndex="1">
+                  <TextField fx:id="Search" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="490.0" promptText="Search" GridPane.columnIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -85,7 +86,7 @@
       </AnchorPane>
    </top>
    <bottom>
-      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #eee8cd;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="26.0" prefWidth="802.0" style="-fx-background-color: #f58992;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <Pane prefHeight="402.0" prefWidth="0.0" BorderPane.alignment="CENTER" />

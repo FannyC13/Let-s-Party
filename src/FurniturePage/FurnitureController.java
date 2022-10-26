@@ -1,6 +1,8 @@
 package FurniturePage;
 
 import Functions.Functions;
+import App.App;
+import RooterPage.*;
 
 import java.beans.Customizer;
 import java.io.IOException;
@@ -37,6 +39,7 @@ public class FurnitureController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    ObservableList<Furniture> l = FXCollections.observableArrayList();
 
     @FXML
     private Button Furniture;
@@ -52,6 +55,9 @@ public class FurnitureController implements Initializable {
 
     @FXML
     private TableColumn<Customizer, String> DescriptionCol;
+
+    @FXML
+    private TableColumn<Furniture, Button> addButton;
 
     @FXML
     private ImageView Filter;
@@ -93,7 +99,7 @@ public class FurnitureController implements Initializable {
 
     @FXML
     void FilterBox(MouseEvent event) throws IOException {
-       
+
         root = FXMLLoader.load(getClass().getResource("/FurniturePage/FilterFurniture.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -158,10 +164,10 @@ public class FurnitureController implements Initializable {
         DescriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
         NameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         PriceCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        addButton.setCellValueFactory(new PropertyValueFactory<>("button"));
+
         Functions.setWrapCellFactory(DescriptionCol);
         Functions.setWrapCellFactory(NameCol);
-
-        ObservableList<Furniture> l = FXCollections.observableArrayList();
 
         if (FilterFurnitureController.queryString != null) {
             FurnitureTab(l, FilterFurnitureController.queryString);
@@ -193,24 +199,89 @@ public class FurnitureController implements Initializable {
         FurnitureTable.setItems(sortedData);
     }
 
+    Button[] buttons = new Button[20];
+    int i = 0;
+    public boolean check = false;
+    public boolean initialized =false;
+    public static ObservableList<Furniture> dataRows = FXCollections.observableArrayList();
+
     public void FurnitureTab(ObservableList<Furniture> l, String query) {
         try {
-
+            
             Object[][] A = Functions.createTable("Name_Services,Description_Services,Price_Services,Image_Services",
                     "services", query);
             for (Object[] r : A) {
+                System.out.println(Arrays.toString(r));
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(String.valueOf(r[3]))));
                 photo.setFitHeight(60);
                 photo.setFitWidth(60);
-                System.out.println("r" + Arrays.toString(r));
+
+                Button button = new Button("Add");
+
+                buttons[i] = button;
+                buttons[i].setId(String.valueOf(i));
+                buttons[i].setOnAction(this::addToKart);
                 Furniture fur = new Furniture(String.valueOf(r[0]), String.valueOf(r[1]),
-                        Double.parseDouble(r[2].toString()), photo);
+                        Double.parseDouble(r[2].toString()), photo, buttons[i]);
                 l.add(fur);
                 FurnitureTable.setItems(l);
+                i++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    private void addToKart(ActionEvent event) {
+        int source = Integer.parseInt(((Button) event.getSource()).getId());
+
+        if (initialized == false) {
+            for (Furniture bean : l) {
+                dataRows.add(bean);
+            }
+
+            Item first = new Item(dataRows.get(source).getImage(), dataRows.get(source).getName(),
+                    dataRows.get(source).getPrice());
+
+            App.KartRows.add(first);
+            CartController.addPrice(dataRows.get(source).getPrice());
+
+            initialized = true;
+        } else {
+            int i1 = 0;
+
+            while (i1 < App.KartRows.size()) {
+                System.out.println(App.KartRows.get(i1).getName());
+                if (App.KartRows.get(i1).getName().equals(dataRows.get(source).getName())) {
+
+                    JOptionPane.showMessageDialog(null, "Item already added to kart");
+                    check = true;
+                }
+                i1++;
+            }
+            /*
+             * for(int i = 0; i < App.KartRows.size(); i++){
+             * if(App.KartRows.get(i).getName().equals(dataRows.get(source).getName())){
+             * JOptionPane.showMessageDialog(null, "Item already added to kart");
+             * check = true;
+             * }
+             * }
+             */
+            System.out.println(check);
+
+            if (check == false) {
+                for (Furniture bean : l) {
+                    dataRows.add(bean);
+                }
+                Item first = new Item(dataRows.get(source).getImage(), dataRows.get(source).getName(),
+                        dataRows.get(source).getPrice());
+                CartController.addPrice(dataRows.get(source).getPrice());
+
+                App.KartRows.add(first);
+            }
+
+            check = false;
+            System.out.println(check);
+        }
     }
 }

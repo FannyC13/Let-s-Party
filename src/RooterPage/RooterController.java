@@ -78,7 +78,7 @@ public class RooterController {
             Furniture.setStyle("-fx-background-color: #c5c7c9;");
         });
         Furniture.setOnMouseExited(m -> {
-            Furniture.setStyle("-fx-background-color:  #eee8cd;");
+            Furniture.setStyle("-fx-background-color:   #f58992;");
         });
 
     }
@@ -89,7 +89,7 @@ public class RooterController {
             Location.setStyle("-fx-background-color: #c5c7c9;");
         });
         Location.setOnMouseExited(m -> {
-            Location.setStyle("-fx-background-color:  #eee8cd;");
+            Location.setStyle("-fx-background-color:  #f58992;");
         });
 
     }
@@ -100,7 +100,7 @@ public class RooterController {
             Services.setStyle("-fx-background-color: #c5c7c9;");
         });
         Services.setOnMouseExited(m -> {
-            Services.setStyle("-fx-background-color:  #eee8cd;");
+            Services.setStyle("-fx-background-color:   #f58992;");
         });
     }
 

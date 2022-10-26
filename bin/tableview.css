@@ -37,3 +37,7 @@
     -fx-background-position:center;
     -fx-background-repeat:no-repeat;
 }
+
+.table-view .table-column .button{
+    -fx-background-color:   #f58992;
+}

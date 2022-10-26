@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,7 +33,7 @@ public class loginController {
     private ImageView lblName;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private TextField txtName;
@@ -52,7 +52,7 @@ public class loginController {
         txtName.setVisible(true);
 
         try {
-           
+
             java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty() && !txtName.getText().isEmpty()) {
@@ -60,7 +60,7 @@ public class loginController {
                 String user = Email.getText();
                 String pass = password.getText();
 
-                String queryString = "Select email, Password from app_users where email='" + user + "' AND Password = '"
+                String queryString = "Select email, Password from app_user where email='" + user + "' AND Password = '"
                         + pass + "'";
 
                 ResultSet res = stat.executeQuery(queryString);
@@ -69,7 +69,7 @@ public class loginController {
                     JOptionPane.showMessageDialog(null, "This Account already exists");
                 } else {
                     String Name = Email.getText();
-                    queryString = "Insert into users values('" + user + "', '" + pass + "', '" + Name + "')";
+                    queryString = "Insert into app_user values('" + user + "', '" + pass + "', '" + Name + "')";
                     stat.execute(queryString);
 
                     JOptionPane.showMessageDialog(null, "User " + Name + " added");
@@ -93,7 +93,6 @@ public class loginController {
 
         try {
 
-        
             java.sql.Statement stat = Functions.getConnect();
 
             if (!Email.getText().isEmpty() && !password.getText().isEmpty()) {
